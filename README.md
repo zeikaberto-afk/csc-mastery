@@ -1,371 +1,104 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#fff4c7">
-<title>CSC Mastery | Your Exam Journey</title>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#fff0f7"><title>CSC Mastery — Learn, Practice, Succeed</title>
 <style>
-:root {
-  --pink:#ffd6e5;
-  --pink-dark:#ef79a5;
-  --yellow:#ffe990;
-  --cream:#fffaf0;
-  --ink:#343044;
-  --muted:#777486;
-  --white:#ffffff;
-  --green:#d9f5df;
-  --red:#ffe0e0;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;background:var(--cream);color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  line-height:1.5;
-}
-button{font:inherit;cursor:pointer}
-button:focus-visible{outline:3px solid #8062c8;outline-offset:3px}
-.topbar{
-  background:var(--white);padding:14px 18px;
-  display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid #f0e8e7;position:sticky;top:0;z-index:5;
-}
-.brand{display:flex;align-items:center;gap:9px;font-weight:900;font-size:19px}
-.logo{background:var(--yellow);border-radius:13px;padding:7px;font-size:23px}
-.brand span:last-child{color:var(--pink-dark)}
-.small-pill{background:#fff0a9;border-radius:30px;padding:7px 10px;font-size:12px;font-weight:800}
-main{max-width:960px;margin:auto;padding:20px 16px 45px}
-.hero{
-  background:linear-gradient(130deg,#ffe0eb,#fff0a8);
-  border-radius:27px;padding:25px 20px;position:relative;overflow:hidden;
-}
-.hero-content{position:relative;z-index:1;max-width:540px}
-.eyebrow{font-size:12px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}
-h1{font-size:clamp(30px,7vw,48px);line-height:1.1;margin:12px 0}
-.hero p{color:#55495d;max-width:430px}
-.cat{
-  position:absolute;right:13px;bottom:6px;font-size:92px;
-  transform:rotate(-7deg);filter:drop-shadow(0 5px 2px #a36a5930);
-}
-.btn{
-  border:0;border-radius:14px;padding:13px 18px;font-weight:850;
-  background:var(--ink);color:white;
-}
-.btn-pink{background:var(--pink-dark);color:#fff}
-.btn-yellow{background:var(--yellow);color:var(--ink)}
-.btn-light{background:white;color:var(--ink);border:1px solid #eee4e5}
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:28px 0 14px}
-h2{font-size:22px;margin:0}
-.muted{color:var(--muted);font-size:13px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
-.stat{background:white;border:1px solid #f0e8e7;border-radius:18px;padding:13px}
-.stat strong{display:block;font-size:22px}
-.stat span{font-size:11px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.card{background:white;border:1px solid #f0e8e7;border-radius:20px;padding:16px}
-.subject-icon{font-size:29px}
-.card h3{margin:8px 0 4px;font-size:17px}
-.card p{font-size:13px;color:var(--muted);margin:0 0 13px}
-.card .btn{width:100%;padding:11px 8px;font-size:13px}
-.progress-track{height:8px;background:#eee8e7;border-radius:20px;overflow:hidden;margin-top:9px}
-.progress-fill{height:100%;width:0;background:var(--pink-dark);transition:width .3s}
-.panel{background:white;border:1px solid #f0e8e7;border-radius:23px;padding:20px;margin-top:18px}
-.hidden{display:none!important}
-.back{background:none;border:0;color:var(--muted);padding:0 0 15px;font-weight:700}
-.question-meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.question{font-size:21px;font-weight:850;margin:17px 0}
-.answers{display:grid;gap:10px}
-.answer{
-  background:#fff;border:2px solid #eee7e7;border-radius:15px;
-  padding:13px;text-align:left;color:var(--ink);font-weight:650;
-}
-.answer:hover{border-color:var(--pink-dark)}
-.answer.correct{background:var(--green);border-color:#67bd80}
-.answer.wrong{background:var(--red);border-color:#e88c8c}
-.explanation{margin-top:15px;padding:15px;border-radius:16px;background:#fff6cf}
-.explanation h3{margin:0 0 6px;font-size:16px}
-.explanation p{margin:0;font-size:14px}
-.quiz-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:18px}
-.notice{font-size:12px;color:var(--muted)}
-.membership{background:#fff0f5;border-radius:23px;padding:22px;margin-top:28px}
-.price{font-size:35px;font-weight:950;margin:8px 0}
-.price small{font-size:14px;font-weight:650}
-footer{text-align:center;padding:22px 10px;color:var(--muted);font-size:12px}
-#toast{font-size:13px;margin-top:12px;font-weight:700}
-@media(min-width:650px){
- main{padding-top:28px}
- .hero{padding:38px}
- .cat{font-size:140px;right:35px;bottom:5px}
- .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
- .panel{padding:27px}
-}
-@media(max-width:370px){
- .grid{grid-template-columns:1fr}
- .cat{font-size:65px;right:8px}
- .hero-content{max-width:85%}
-}
-</style>
-</head>
-<body>
-<header class="topbar">
-  <div class="brand"><span class="logo">🐱</span><span>CSC <span>Mastery</span></span></div>
-  <span class="small-pill">🎓 EXAM PREP</span>
-</header>
-
-<main>
-  <section id="home">
-    <div class="hero">
-      <div class="hero-content">
-        <div class="eyebrow">Your future starts here ✨</div>
-        <h1>Study smart.<br>Pass with confidence.</h1>
-        <p>Small steps every day can bring you closer to your Civil Service Exam goal. Let's do this together!</p>
-        <button class="btn" onclick="showSubjects()">Start studying →</button>
-      </div>
-      <div class="cat" aria-label="Cat wearing sunglasses">😎🐱</div>
-    </div>
-
-    <div class="stats">
-      <div class="stat"><strong id="statDone">0</strong><span>Questions answered</span></div>
-      <div class="stat"><strong id="statCorrect">0</strong><span>Correct answers</span></div>
-      <div class="stat"><strong id="statRate">0%</strong><span>Accuracy</span></div>
-    </div>
-
-    <div class="section-head">
-      <div><h2>Your learning corner 📚</h2><div class="muted">Choose a subject and practice at your pace.</div></div>
-    </div>
-
-    <div class="grid" id="subjects">
-      <article class="card">
-        <div class="subject-icon">🔢</div>
-        <h3>Numerical Ability</h3>
-        <p>Ratio, percentages, averages and number problems.</p>
-        <div class="progress-track"><div class="progress-fill" id="progress-math"></div></div>
-        <p id="count-math" style="margin-top:7px">Practice questions</p>
-        <button class="btn btn-yellow" onclick="startQuiz('math')">Practice math →</button>
-      </article>
-      <article class="card">
-        <div class="subject-icon">📝</div>
-        <h3>Verbal Ability</h3>
-        <p>Vocabulary, grammar and word relationships.</p>
-        <div class="progress-track"><div class="progress-fill" id="progress-verbal"></div></div>
-        <p id="count-verbal" style="margin-top:7px">Practice questions</p>
-        <button class="btn btn-pink" onclick="startQuiz('verbal')">Practice English →</button>
-      </article>
-      <article class="card">
-        <div class="subject-icon">🧠</div>
-        <h3>Logical Reasoning</h3>
-        <p>Patterns, logic and careful thinking.</p>
-        <div class="progress-track"><div class="progress-fill" id="progress-logic"></div></div>
-        <p id="count-logic" style="margin-top:7px">Practice questions</p>
-        <button class="btn" onclick="startQuiz('logic')">Train your brain →</button>
-      </article>
-    </div>
-
-    <section class="membership">
-      <div class="eyebrow">Your study journey 💛</div>
-      <h2>More practice, more confidence!</h2>
-      <div class="price">₱49 <small>/ every 15 days</small></div>
-      <p class="muted">Planned membership for extra reviewers and practice sets.</p>
-      <p class="notice">Membership and payment features are not active yet. The lessons currently available on this demo site are open to everyone.</p>
-      <button class="btn btn-light" onclick="membershipInfo()">Membership details</button>
-      <div id="toast" role="status"></div>
-    </section>
-  </section>
-
-  <section id="quiz" class="panel hidden">
-    <button class="back" onclick="goHome()">← Back to subjects</button>
-    <div class="question-meta">
-      <span class="small-pill" id="quizSubject">Numerical Ability</span>
-      <span class="muted" id="questionCount">Question 1</span>
-    </div>
-    <div class="progress-track"><div class="progress-fill" id="quizProgress"></div></div>
-    <div id="quizArea">
-      <div class="question" id="questionText"></div>
-      <div class="answers" id="answerOptions"></div>
-      <div id="explanation" class="explanation hidden" aria-live="polite">
-        <h3 id="feedbackTitle">Great effort!</h3>
-        <p id="explanationText"></p>
-      </div>
-      <div class="quiz-footer">
-        <span class="notice" id="encouragement">You can do it! 🐱</span>
-        <button class="btn" id="nextButton" disabled onclick="nextQuestion()">Next →</button>
-      </div>
-    </div>
-    <div id="quizResults" class="hidden">
-      <div style="font-size:55px;text-align:center">🏆🐱</div>
-      <h2 style="text-align:center">Practice complete!</h2>
-      <p id="resultText" style="text-align:center"></p>
-      <p class="muted" style="text-align:center">Read the explanations and try again to improve your score.</p>
-      <button class="btn btn-pink" style="width:100%" onclick="restartQuiz()">Try again</button>
-      <button class="btn btn-light" style="width:100%;margin-top:10px" onclick="goHome()">Choose another subject</button>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div style="font-size:25px">🐱💗💛</div>
-  <strong>CSC Mastery</strong><br>
-  Keep learning. Keep believing in yourself.<br><br>
-  Independent study resource. Not affiliated with the Civil Service Commission.
-</footer>
-
+:root{--pink:#ed2f87;--pink-dark:#c91669;--pink-soft:#fff0f7;--yellow:#ffd85c;--yellow-soft:#fff8d9;--ink:#24244d;--muted:#686987;--line:#f4cfe1;--green:#13875a;--shadow:0 12px 32px #b82e6812}*{box-sizing:border-box}body{margin:0;background:#fffafd;color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,-apple-system,sans-serif}button{font:inherit;cursor:pointer;border:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px clamp(14px,5vw,60px);background:#ffffffed;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.brand{display:flex;align-items:center;gap:9px;font-weight:900;color:var(--pink-dark);font-size:1.15rem}.cat-icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffe76b,#ffd2e8);font-size:26px;border:2px solid white;box-shadow:0 0 0 1px var(--line)}.brand small{display:block;font-size:.65rem;color:var(--ink);font-weight:600}.btn{background:var(--pink);color:white;padding:12px 17px;border-radius:999px;font-weight:800;box-shadow:0 5px 0 #b9156320}.btn.secondary{background:white;color:var(--pink-dark);border:1px solid var(--line);box-shadow:none}.btn.yellow{background:var(--yellow);color:#47380b}.hero{background:linear-gradient(110deg,#fff4b9,#fff0f7 55%,#ffe2f1);padding:35px clamp(18px,6vw,70px);display:grid;grid-template-columns:1fr minmax(220px,300px);gap:24px;align-items:center}.hero-main{display:flex;align-items:center;gap:18px}.hero-cat{font-size:clamp(65px,10vw,110px)}h1{font-size:clamp(2rem,4vw,3.1rem);line-height:1.05;margin:0 0 12px;letter-spacing:-.04em}h1 span{color:var(--pink-dark)}p{line-height:1.6}.hero p{color:#44456c;max-width:620px}.pill,.tag{display:inline-block;background:white;border:1px solid var(--line);padding:6px 10px;border-radius:99px;font-size:.78rem;font-weight:800;margin:3px}.tag{background:var(--pink-soft);color:var(--pink-dark);border:0}main{max-width:1050px;margin:28px auto;padding:0 16px 55px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px}.section-head h2{margin:0;font-size:1.6rem}.section-head p{margin:5px 0;color:var(--muted)}.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.scope-card,.panel,.lesson-card,.side-card,.offer{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}.scope-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;padding:17px;background:linear-gradient(100deg,#fff5bc,#fff0f7);color:var(--ink);font-weight:900;font-size:1rem}.scope-toggle .arrow{transition:transform .2s}.scope-toggle[aria-expanded="true"] .arrow{transform:rotate(180deg)}.scope-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}.scope-list-inner{overflow:hidden}.scope-list.open{grid-template-rows:1fr}.scope-btn{display:block;width:100%;text-align:left;background:white;color:var(--ink);padding:12px 17px;border-top:1px solid #f8e3ed}.scope-btn:after{content:'›';float:right;color:var(--pink-dark);font-weight:900}.scope-btn:hover,.scope-btn:focus{background:var(--pink-soft)}.panel,.lesson-card{padding:20px;margin-top:20px}.panel-head{display:flex;justify-content:space-between;gap:10px;align-items:center;padding-bottom:12px;border-bottom:1px solid #f7e1eb}.lesson-card h2{margin:8px 0}.lesson-lead{font-size:1.02rem;color:#414264}.lesson-points{padding-left:22px;line-height:1.75}.example,.cat-tip,.feedback{padding:14px;border-radius:13px;margin:12px 0;line-height:1.6}.example{background:#f5f1ff;border:1px solid #e2dafa}.cat-tip{background:var(--yellow-soft);border:1px solid #f3df8e}.lesson-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.question{font-size:1.15rem;line-height:1.55;margin:18px 0}.choices{display:grid;gap:10px}.choice{background:#fff;border:1px solid #eadfed;border-radius:12px;text-align:left;padding:13px;color:var(--ink);display:flex;gap:10px;align-items:flex-start}.choice.correct{border-color:#72cba6;background:#eafff4}.choice.wrong{border-color:#ff9aab;background:#fff0f2}.letter{font-weight:900;color:var(--pink-dark)}.feedback{display:none}.feedback.show{display:block}.feedback.good{background:#eafff4;color:#155d43}.feedback.bad{background:#fff3dc;color:#6d4b00}.question-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.side-card{padding:17px;margin-top:16px;background:linear-gradient(150deg,#fff8dc,#fff0f7)}.offer{padding:22px;margin-top:24px;background:linear-gradient(120deg,#fff0f7,#fff8d9)}.price{font-size:2rem;font-weight:1000;color:var(--pink-dark)}.fine{font-size:.8rem;color:var(--muted)}.hidden{display:none!important}.footer{text-align:center;color:var(--muted);padding:22px;border-top:1px solid var(--line);font-size:.85rem}@media(max-width:700px){.hero{grid-template-columns:1fr;padding-top:25px}.hero-main{align-items:flex-start}.hero-cat{font-size:58px}.scope-grid{grid-template-columns:1fr}.topbar{padding:10px 12px}.brand{font-size:1rem}.cat-icon{width:38px;height:38px}.panel,.lesson-card{padding:15px}.section-head{align-items:start;flex-direction:column}}
+</style></head><body>
+<header class="topbar"><div class="brand"><div class="cat-icon">🐱</div><div>CSC <span style="color:#f2a900">Mastery</span><small>Learn first. Practice next.</small></div></div><button class="btn secondary" onclick="goToScopes()">All scopes</button></header>
+<section class="hero" id="home"><div class="hero-main"><div class="hero-cat">😺📚</div><div><h1>Learn smarter.<br><span>Pass with confidence!</span></h1><p>Choose a study scope, learn the topic in simple English, then challenge yourself with CSC-style practice and clear explanations.</p><span class="pill">📖 Short lessons</span><span class="pill">💡 Worked examples</span><span class="pill">⚔️ Final Boss practice</span></div></div><aside class="lesson-card" style="margin:0"><strong>🐱 Your study cat says:</strong><p style="margin-bottom:0">One small lesson at a time. You can do this!</p></aside></section>
+<main><div class="section-head" id="practice"><div><h2>🐾 Step 1: Choose a scope</h2><p>Tap a main category to reveal its subtopics.</p></div><span class="tag">LESSON → MOCK EXAM</span></div><div class="scope-grid" id="scopeGrid"></div>
+<section class="lesson-card hidden" id="lessonView" aria-live="polite"></section>
+<section class="panel hidden" id="quizView"><div class="panel-head"><strong>⚔️ CSC Mastery · Final Boss</strong><span id="counter" class="tag">Final Boss</span></div><div class="tag" id="topic" style="margin-top:14px">Topic</div><div class="question" id="questionText"></div><div class="choices" id="choices"></div><div class="feedback" id="feedback" role="status" aria-live="polite"></div><div class="question-actions"><button class="btn secondary" onclick="backToLesson()">← Back to lesson</button><button class="btn" id="nextBtn" onclick="nextQuestion()">Check Answer →</button></div><p class="fine">These are original study questions, not official or leaked CSC exam questions. Additional reviewed question batches will be added over time.</p></section>
+<section class="offer" id="plans"><span class="tag">PLANNED MEMBERSHIP</span><h2>CSC Mastery Pro</h2><p>Our planned price is <strong>₱49 for 15 days</strong>. Payment and paid access are not connected yet. Do not accept payments until secure payment and access systems are configured.</p></section></main><footer class="footer"><strong>🐱 CSC Mastery</strong><p>Study Smart. Pass with Confidence. 💗</p><span>Learning website prototype · Content will be added and reviewed in batches.</span></footer>
 <script>
-const lessons = {
-math: {
-  name:"Numerical Ability",
-  questions:[
-    {q:"The ratio of boys to girls in a class is 2:3. If there are 25 students, how many are girls?",
-     a:["10","15","20","12"],correct:1,
-     exp:"The ratio has 2 + 3 = 5 total parts. Each part is 25 ÷ 5 = 5 students. Girls represent 3 parts, so 3 × 5 = 15 girls."},
-    {q:"What is 20% of 350?",
-     a:["35","60","70","75"],correct:2,
-     exp:"Convert 20% to 0.20, then multiply: 0.20 × 350 = 70."},
-    {q:"The average of 12, 16, and 20 is:",
-     a:["14","15","16","18"],correct:2,
-     exp:"Add the numbers: 12 + 16 + 20 = 48. Divide by 3 numbers: 48 ÷ 3 = 16."},
-    {q:"A bag costs ₱800 and has a 25% discount. What is the sale price?",
-     a:["₱200","₱575","₱600","₱650"],correct:2,
-     exp:"The discount is 800 × 0.25 = ₱200. Subtract it from the original price: 800 − 200 = ₱600."},
-    {q:"If 5 notebooks cost ₱150, how much do 8 notebooks cost at the same price each?",
-     a:["₱200","₱220","₱240","₱250"],correct:2,
-     exp:"One notebook costs 150 ÷ 5 = ₱30. Eight notebooks cost 8 × 30 = ₱240."}
-  ]
-},
-verbal: {
-  name:"Verbal Ability",
-  questions:[
-    {q:"What is the closest meaning of 'diligent'?",
-     a:["Lazy","Hardworking","Careless","Impatient"],correct:1,
-     exp:"Diligent means showing careful and persistent effort. A diligent student works hard and studies consistently."},
-    {q:"Choose the grammatically correct sentence.",
-     a:["She go to school every day.","She going to school every day.","She goes to school every day.","She gone to school every day."],correct:2,
-     exp:"With 'she' in the simple present tense, we normally add -s or -es to the verb: she goes."},
-    {q:"Book is to reading as fork is to ____.",
-     a:["Drawing","Eating","Writing","Sleeping"],correct:1,
-     exp:"A book is used for reading. Similarly, a fork is used for eating. The relationship is an object and its usual function."},
-    {q:"What is the opposite of 'scarce'?",
-     a:["Rare","Limited","Abundant","Unusual"],correct:2,
-     exp:"Scarce means insufficient or hard to find. Abundant means plentiful or available in large amounts."},
-    {q:"Choose the correct sentence.",
-     a:["Neither of the answers are correct.","Neither of the answers is correct.","Neither answers is correct.","Neither of answers are correct."],correct:1,
-     exp:"'Neither' is treated as singular in this sentence, so the correct verb is 'is'."}
-  ]
-},
-logic: {
-  name:"Logical Reasoning",
-  questions:[
-    {q:"What number comes next? 2, 4, 8, 16, __",
-     a:["18","24","30","32"],correct:3,
-     exp:"Each number is multiplied by 2. Therefore, 16 × 2 = 32."},
-    {q:"All roses are flowers. Some flowers fade quickly. Which statement must be true?",
-     a:["All roses fade quickly.","No roses fade quickly.","All roses are flowers.","All flowers are roses."],correct:2,
-     exp:"The first statement directly says all roses are flowers. We cannot conclude that roses fade quickly because the second statement only refers to some flowers."},
-    {q:"Find the odd one out.",
-     a:["Triangle","Square","Circle","Apple"],correct:3,
-     exp:"A triangle, square, and circle are geometric shapes. An apple is a fruit."},
-    {q:"If today is Monday, what day will it be 10 days from today?",
-     a:["Wednesday","Thursday","Friday","Saturday"],correct:1,
-     exp:"Seven days after Monday is Monday again. Three additional days bring us to Thursday."},
-    {q:"Ana is taller than Ben. Ben is taller than Carlo. Who is the shortest?",
-     a:["Ana","Ben","Carlo","Cannot be determined"],correct:2,
-     exp:"Ana > Ben > Carlo in height. Carlo is shorter than both Ana and Ben, so Carlo is the shortest."}
-  ]
-}
+const scopes = {
+ "Verbal Ability":["Word Meaning","Sentence Completion","Error Recognition","Sentence Structure","Paragraph Organization","Reading Comprehension"],
+ "Numerical Ability":["Basic Operations","Fractions","Decimals","Percentages","Ratio and Proportion","Averages","Number Sequences","Algebra","Age Problems","Simple Interest","Speed, Distance, and Time","Mixed Word Problems"],
+ "Analytical Ability":["Word Analogy","Symbolic Logic","Abstract Reasoning and Patterns","Identifying Assumptions","Drawing Conclusions","Logical Arguments and Syllogisms","Data Interpretation"],
+ "General Information":["Constitutional Principles and State Structure","Bill of Rights","Citizenship and Suffrage","Branches of Government and Local Government","RA 6713: Norms of Conduct","Public Accountability and Conflicts of Interest","Disclosure and Prohibited Acts","Fundamental Human Rights","Peace, Equality, and Human Dignity","Pollution and Waste Management","Natural Resources and Biodiversity","Environmental Laws and Sustainability"]
+};
+const lessonNotes = {
+"Word Meaning":{intro:"Word Meaning questions test whether you understand a word in context, not just by memorising a definition.",points:["Synonyms have similar meanings; antonyms have opposite meanings.","Use context clues from the rest of the sentence to infer an unfamiliar word.","Check the tone and situation: a word may have a positive, negative, or neutral meaning."],example:"Example: “The diligent student reviewed every mistake.” Diligent means hardworking and careful.",tip:"Learn new words with a short example sentence. For difficult words, eliminate choices that do not fit the sentence."},
+"Sentence Completion":{intro:"Sentence Completion questions ask you to choose the word or phrase that makes a sentence logical and grammatically correct.",points:["Read the whole sentence before looking at the choices.","Look for clue words such as although, because, therefore, and however.","Check both meaning and grammar before choosing."],example:"Example: “Although the road was wet, the driver proceeded ___.” The best fit may be “carefully” because it matches the situation.",tip:"Predict a possible answer before checking the choices."},
+"Error Recognition":{intro:"Error Recognition asks you to identify the part of a sentence that contains a grammar or usage mistake.",points:["Check whether the subject and verb agree.","Check verb tense, pronouns, modifiers, and parallel structure.","Read each marked section with the whole sentence in mind."],example:"Example: “The list of names are ready.” The subject is “list,” so “is ready” is the expected form.",tip:"Find the real subject first. Do not let extra words between the subject and verb distract you."},
+"Sentence Structure":{intro:"Sentence Structure focuses on how words and clauses are arranged to make a clear, correct sentence.",points:["Make sure each sentence has a clear subject and verb.","Place descriptive phrases next to the word they describe.","Avoid fragments, run-on sentences, and dangling modifiers."],example:"Example: “After reviewing the file, Ana found the error.” Ana is the person who reviewed the file, so the opening phrase is clear.",tip:"Ask who is doing the action and whether the sentence clearly says so."},
+"Paragraph Organization":{intro:"Paragraph Organization tests whether you can arrange sentences in a logical order.",points:["Find the sentence that introduces the main idea.","Look for sequence words such as first, next, finally, and therefore.","Pronouns and linking words often refer to ideas mentioned earlier."],example:"A process paragraph usually introduces the task, explains the steps in order, then gives the result.",tip:"Identify the topic sentence first, then connect the supporting details in a sensible order."},
+"Reading Comprehension":{intro:"Reading Comprehension tests how well you understand a passage and distinguish stated facts from conclusions.",points:["Answer from the passage, not from personal opinion.","Identify the main idea and the details that support it.","For inference questions, choose the conclusion best supported by the text."],example:"If a passage says Mina studies daily and reviews mistakes, a reasonable inference is that she follows a consistent study routine.",tip:"Return to the passage to verify your answer, especially when choices sound similar."},
+"Basic Operations":{intro:"Basic Operations covers addition, subtraction, multiplication, and division, including the order in which to solve them.",points:["Follow PEMDAS: parentheses, exponents, multiplication/division, addition/subtraction.","Multiplication and division have equal priority; work left to right.","Addition and subtraction also have equal priority; work left to right."],example:"Example: 8 + 3 × 4 = 8 + 12 = 20. Multiply before adding.",tip:"Write each step clearly to avoid careless mistakes."},
+"Fractions":{intro:"Fractions represent parts of a whole. The top number is the numerator and the bottom number is the denominator.",points:["To add or subtract fractions, use a common denominator.","To multiply fractions, multiply the numerators and denominators.","To divide fractions, multiply by the reciprocal of the second fraction."],example:"Example: 1/2 + 1/4 = 2/4 + 1/4 = 3/4.",tip:"Simplify your final fraction when possible."},
+"Decimals":{intro:"Decimals show parts of a whole using place values such as tenths, hundredths, and thousandths.",points:["Line up decimal points when adding or subtracting.","When multiplying, count the total decimal places in the factors.","When dividing by a decimal, move the decimal point in both numbers equally to make the divisor a whole number."],example:"Example: 2.5 + 0.75 = 3.25.",tip:"Estimate the result first to catch answers that are too large or too small."},
+"Percentages":{intro:"Percent means “per hundred.” Percentage questions commonly ask for the part, the rate, or the original whole.",points:["Find the part: percentage as a decimal × whole.","Find the rate: part ÷ whole × 100.","Find the whole: part ÷ percentage as a decimal."],example:"Example: What is 20% of 150? Convert 20% to 0.20, then 0.20 × 150 = 30.",tip:"Ask yourself what is missing: the part, the percentage rate, or the whole."},
+"Ratio and Proportion":{intro:"A ratio compares quantities. A proportion says that two ratios are equal.",points:["Write ratios in the same order as the quantities in the question.","Simplify ratios by dividing each term by the same common factor.","For a proportion a/b = c/d, cross-multiply to solve when the denominators are nonzero."],example:"Example: If 2 notebooks cost ₱30, then 6 notebooks at the same rate cost 3 × ₱30 = ₱90.",tip:"Check that the units and order match before calculating."},
+"Averages":{intro:"The arithmetic average, or mean, is the total of the values divided by how many values there are.",points:["Average = sum of values ÷ number of values.","Total = average × number of values.","For a missing value, calculate the required total first, then subtract the known values."],example:"Example: The average of 6, 8, and 10 is (6 + 8 + 10) ÷ 3 = 8.",tip:"Do not divide by the sum of the values; divide by the number of values."},
+
+"Number Sequences":{intro:"Number Sequence questions ask you to identify a rule connecting the terms.",points:["Check the differences between consecutive numbers.","If differences change, check second differences, multiplication, division, or alternating patterns.","Look for repeating groups or patterns that use two rules."],example:"Example: 3, 6, 9, 12, __ increases by 3 each time, so the next number is 15.",tip:"Write the differences above the sequence instead of guessing."},
+"Algebra":{intro:"Algebra uses letters to represent unknown numbers. The goal is to keep both sides of an equation balanced.",points:["Combine like terms.","Use inverse operations to isolate the variable.","Whatever operation you perform on one side of an equation, perform on the other side too."],example:"Example: x + 7 = 12. Subtract 7 from both sides: x = 5.",tip:"Substitute your answer back into the original equation to check it."},
+"Age Problems":{intro:"Age problems connect people's ages now and at another time. Their age difference stays constant as time passes.",points:["Represent an unknown age with a variable.","For ages in the future, add the same number of years to each person's current age.","For ages in the past, subtract the same number of years from each person's current age."],example:"Example: If Ana is x years old now, in 5 years she will be x + 5.",tip:"Translate each sentence into an equation before solving."},
+"Simple Interest":{intro:"Simple interest is calculated only on the original principal, not on previously earned interest.",points:["Interest = principal × annual rate × time.","Convert the rate from percent to decimal.","Make sure the time is expressed in years if the rate is annual."],example:"Example: ₱1,000 at 5% simple interest for 2 years: I = 1,000 × 0.05 × 2 = ₱100.",tip:"Check that the rate and time use matching units."},
+"Speed, Distance, and Time":{intro:"These problems connect how far something travels, how long it takes, and its average speed.",points:["Speed = distance ÷ time.","Distance = speed × time.","Time = distance ÷ speed. Keep units consistent."],example:"Example: A vehicle travels 120 km in 3 hours. Its average speed is 120 ÷ 3 = 40 km/h.",tip:"Write the known values and units before choosing a formula."},
+"Mixed Word Problems":{intro:"Mixed word problems combine real-life situations with arithmetic, percentages, ratios, rates, or algebra.",points:["Read the question and identify exactly what must be found.","List the known values and convert units if needed.","Choose the formula or operation that connects the known values to the unknown."],example:"If 4 items cost ₱80, first find the unit price: ₱80 ÷ 4 = ₱20 per item.",tip:"Do not calculate every number in the story. Use only information relevant to the question."},
+"Word Analogy":{intro:"Word Analogy questions test the relationship between two words. You must find another pair with the same relationship.",points:["State the relationship in a short phrase.","Check that the relationship works in the same direction.","Eliminate pairs that are related in a different way."],example:"Book is to reading as fork is to eating: each first item is commonly used for the second action.",tip:"Describe the first pair in words before looking for the matching pair."},
+"Symbolic Logic":{intro:"Symbolic Logic uses symbols or statements to represent relationships and test whether a conclusion follows.",points:["Translate each symbol or statement carefully.","Separate what is given from what you are asked to conclude.","Do not assume a statement is reversible unless the logic supports it."],example:"If P implies Q and Q is false, classical logic tells us P must be false.",tip:"Use only the stated rules; do not add assumptions."},
+"Abstract Reasoning and Patterns":{intro:"Abstract Reasoning asks you to find a rule in shapes, symbols, or visual patterns.",points:["Check changes in position, rotation, size, shading, and number.","Look for a repeating sequence or alternating rule.","Test the same rule against more than one step."],example:"If a shape rotates 90 degrees clockwise each step, the next shape should continue that rotation.",tip:"Look for one change at a time, then check whether multiple changes happen together."},
+"Identifying Assumptions":{intro:"An assumption is an unstated idea that must be accepted for an argument to work.",points:["Separate the argument's claim from its evidence.","Find what the speaker takes for granted.","Choose a necessary assumption, not merely a statement that could be true."],example:"If someone says a new bus route will reduce lateness because it is faster, the argument assumes commuters can use that route.",tip:"Ask: what must be true for this conclusion to make sense?"},
+"Drawing Conclusions":{intro:"Drawing Conclusions means selecting the result that is best supported by the facts provided.",points:["Use all relevant facts, but do not add outside information.","Distinguish a possibility from something that must be true.","Avoid conclusions that are broader than the evidence."],example:"If every registered applicant received a number and Lea is a registered applicant, Lea received a number.",tip:"Choose the strongest conclusion the evidence actually supports—not the most dramatic one."},
+"Logical Arguments and Syllogisms":{intro:"Syllogisms use statements or premises to test whether a conclusion logically follows.",points:["Treat the premises as given for the question.","Check whether the conclusion follows in every case allowed by the premises.","Watch for words such as all, some, none, and only."],example:"All cats are mammals. Miso is a cat. Therefore, Miso is a mammal.",tip:"Do not reverse an “all” statement: all cats are mammals does not mean all mammals are cats."},
+"Data Interpretation":{intro:"Data Interpretation asks you to read tables, charts, or figures and answer questions accurately.",points:["Read the title, labels, units, and time period first.","Compare the correct rows, columns, or categories.","For percentage change, use change ÷ original value × 100."],example:"If sales rise from 100 to 120, the increase is 20; the percentage increase is 20 ÷ 100 × 100 = 20%.",tip:"Check whether the question asks for a difference, total, ratio, or percentage."}
 };
 
-let category="math", index=0, score=0, answered=false, runAnswers=0;
-let stats={done:0,correct:0};
-let progress={math:0,verbal:0,logic:0};
+const generalNotes = {
+"Constitutional Principles and State Structure":"Study the Constitution as the country's fundamental law, the structure of the state, and principles such as popular sovereignty and the rule of law.",
+"Bill of Rights":"Review constitutional protections for individuals, including due process, equal protection, and safeguards against unreasonable searches and seizures.",
+"Citizenship and Suffrage":"Learn the constitutional basics of Philippine citizenship and the qualifications and rules concerning the right to vote.",
+"Branches of Government and Local Government":"Understand the roles of the legislative, executive, and judicial branches, along with the general responsibilities of local government units.",
+"RA 6713: Norms of Conduct":"RA 6713 sets ethical standards for public officials and employees, including commitment to public interest, professionalism, political neutrality, and simple living.",
+"Public Accountability and Conflicts of Interest":"Public servants are accountable for their conduct and should avoid situations where private interests improperly affect official duties.",
+"Disclosure and Prohibited Acts":"Study the applicable rules on disclosure, statements of assets and liabilities, and prohibited conduct by public officials; verify details against the current law.",
+"Fundamental Human Rights":"Review basic rights and protections recognised by the Constitution and human-rights principles, including dignity, equality, and freedom from unlawful treatment.",
+"Peace, Equality, and Human Dignity":"Learn how respect, fairness, peaceful conflict resolution, and equal dignity support communities and public service.",
+"Pollution and Waste Management":"Review pollution prevention, proper waste segregation, reduction, reuse, recycling, and responsible disposal.",
+"Natural Resources and Biodiversity":"Understand conservation of ecosystems, wildlife, water, forests, and other natural resources for current and future generations.",
+"Environmental Laws and Sustainability":"Study the goals of major Philippine environmental laws and sustainable practices. Check current official sources for specific legal requirements."
+};
+const questions = [
+{id:"WM-FB-001",category:"Verbal Ability",topic:"Word Meaning",difficulty:"Final Boss",q:"A public official's statement was described as disingenuous because, although technically accurate, it deliberately omitted information that would have changed the audience's understanding. Which interpretation best captures disingenuous in this context?",choices:["Overly cautious because the available evidence is inconclusive.","Insincere or misleading, despite an appearance of honesty.","Unintentionally inaccurate because of a misunderstanding.","Direct and uncompromising in expressing an unpopular opinion."],correctText:"Insincere or misleading, despite an appearance of honesty.",why:"Disingenuous means not candid or sincere, often involving an attempt to mislead. A statement can be technically true yet disingenuous if important information is intentionally withheld. An unintentional mistake is different from deliberate misleading."},
+{id:"WM-FB-002",category:"Verbal Ability",topic:"Word Meaning",difficulty:"Final Boss",q:"The auditor's findings were described as incontrovertible. Which meaning is closest to incontrovertible?",choices:["Open to several interpretations","Difficult to explain clearly","Impossible to deny or dispute convincingly","Based mainly on personal opinion"],correctText:"Impossible to deny or dispute convincingly",why:"Incontrovertible means undeniable or not reasonably open to dispute. It describes evidence or facts that are very difficult to refute."},
+{id:"WM-FB-003",category:"Verbal Ability",topic:"Word Meaning",difficulty:"Final Boss",q:"The director's ostensibly generous offer contained conditions that made it nearly impossible to accept. What does ostensibly mean?",choices:["Secretly and without warning","Apparently or seemingly","Legally and permanently","Accidentally and carelessly"],correctText:"Apparently or seemingly",why:"Ostensibly means apparently or on the surface. The sentence suggests the offer seemed generous, but its conditions revealed a different reality."},
+{id:"WM-FB-004",category:"Verbal Ability",topic:"Word Meaning",difficulty:"Final Boss",q:"Rather than address the central allegation, the spokesperson gave a specious argument that sounded logical but rested on faulty reasoning. Specious most nearly means:",choices:["Convincing in appearance but actually unsound","Supported by conclusive evidence","Brief and completely impartial","Unrelated but factually correct"],correctText:"Convincing in appearance but actually unsound",why:"Specious describes reasoning that appears plausible or convincing but is actually false or misleading."},
+{id:"WM-FB-005",category:"Verbal Ability",topic:"Word Meaning",difficulty:"Final Boss",q:"The witness's account was so equivocal that investigators could not determine what had actually occurred. Equivocal means:",choices:["Deliberately hostile","Completely fabricated","Unusually detailed","Ambiguous or open to multiple interpretations"],correctText:"Ambiguous or open to multiple interpretations",why:"Equivocal means unclear or ambiguous, often allowing more than one interpretation. It does not necessarily mean the statement is false."},
+{id:"SS-FB-001",category:"Verbal Ability",topic:"Sentence Structure",difficulty:"Final Boss",q:"Choose the sentence with the clearest and most grammatically correct structure.",choices:["Having reviewed the records, the discrepancy was obvious to the auditor.","After the records were reviewed, the auditor noticed the discrepancy.","Having reviewed the records, the auditor noticed the discrepancy.","The discrepancy, having reviewed the records, was noticed by the auditor."],correctText:"Having reviewed the records, the auditor noticed the discrepancy.",why:"The introductory phrase 'Having reviewed the records' must describe the person who reviewed them. In option C, the auditor is the subject who performed that action, avoiding a dangling modifier."},
+{id:"ER-FB-001",category:"Verbal Ability",topic:"Error Recognition",difficulty:"Final Boss",q:"Identify the part containing an error: 'Neither the supervisors nor the department head (A) were willing (B) to explain why the reports (C) had been delayed (D).'",choices:["A — Neither the supervisors nor the department head","B — were willing","C — the reports","D — had been delayed"],correctText:"B — were willing",why:"With 'neither...nor,' the verb commonly agrees with the nearer subject. The nearer subject is 'department head,' singular, so 'was willing' is expected in this construction."},
+{id:"SC-FB-001",category:"Verbal Ability",topic:"Sentence Completion",difficulty:"Final Boss",q:"The evidence was not merely insufficient; it was ______, because key records directly contradicted the witness's account.",choices:["corroborative","conclusive","exculpatory","incriminating"],correctText:"incriminating",why:"Incriminating evidence tends to suggest guilt or wrongdoing. Records that contradict a witness's account may incriminate that witness, depending on context. The other choices do not fit the sentence's contrast."},
+{id:"NA-FB-001",category:"Numerical Ability",topic:"Ratio and Proportion",difficulty:"Final Boss",q:"The ratio of A to B is 5:7. When 12 is added to A and 4 is subtracted from B, the two quantities become equal. What is A + B initially?",choices:["72","84","96","108"],correctText:"96",why:"Let A=5k and B=7k. The condition gives 5k+12=7k−4, so 2k=16 and k=8. Thus A+B=12k=96."},
+{id:"NA-FB-002",category:"Numerical Ability",topic:"Percentages",difficulty:"Final Boss",q:"A price is increased by 20% and then reduced by 20% of the new price. Compared with the original price, the final price is:",choices:["4% lower","Unchanged","4% higher","8% lower"],correctText:"4% lower",why:"Let the original price be 100. After a 20% increase it is 120. A 20% reduction of 120 is 24, leaving 96. The final price is 4% below the original."},
+{id:"NA-FB-003",category:"Numerical Ability",topic:"Averages",difficulty:"Final Boss",q:"The average of 8 numbers is 24. If one number, 18, is replaced by 34, what is the new average?",choices:["25","26","27","28"],correctText:"26",why:"The total increases by 34−18=16. Spread across 8 numbers, the average increases by 16÷8=2. The new average is 24+2=26."},
+{id:"NA-FB-004",category:"Numerical Ability",topic:"Simple Interest",difficulty:"Final Boss",q:"A sum earns simple interest of ₱3,600 in 4 years at 6% per annum. What was the principal?",choices:["₱12,000","₱15,000","₱18,000","₱20,000"],correctText:"₱15,000",why:"Simple interest I=Prt. Here 3,600=P×0.06×4=P×0.24. Therefore P=3,600÷0.24=₱15,000."},
 
-function showSubjects(){
-  document.getElementById("home").classList.remove("hidden");
-  document.getElementById("quiz").classList.add("hidden");
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function goHome(){showSubjects();}
-
-function startQuiz(key){
-  category=key; index=0; score=0; runAnswers=0;
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById("quiz").classList.remove("hidden");
-  document.getElementById("quizArea").classList.remove("hidden");
-  document.getElementById("quizResults").classList.add("hidden");
-  renderQuestion();
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function renderQuestion(){
-  const lesson=lessons[category], item=lesson.questions[index];
-  answered=false;
-  document.getElementById("quizSubject").textContent=lesson.name;
-  document.getElementById("questionCount").textContent=`Question ${index+1} of ${lesson.questions.length}`;
-  document.getElementById("quizProgress").style.width=(index/lesson.questions.length*100)+"%";
-  document.getElementById("questionText").textContent=item.q;
-  document.getElementById("explanation").classList.add("hidden");
-  document.getElementById("nextButton").disabled=true;
-  document.getElementById("nextButton").textContent=index===lesson.questions.length-1?"See results →":"Next →";
-  document.getElementById("encouragement").textContent=["You can do it! 🐱","Take your time! 💛","Every question helps you grow! 🌱"][index%3];
-
-  const options=document.getElementById("answerOptions");
-  options.innerHTML="";
-  item.a.forEach((answer,i)=>{
-    const btn=document.createElement("button");
-    btn.className="answer";
-    btn.textContent=String.fromCharCode(65+i)+". "+answer;
-    btn.onclick=()=>chooseAnswer(i,btn);
-    options.appendChild(btn);
-  });
-}
-function chooseAnswer(choice,button){
-  if(answered)return;
-  answered=true;
-  const item=lessons[category].questions[index];
-  const buttons=document.querySelectorAll(".answer");
-  buttons.forEach((b,i)=>{
-    b.disabled=true;
-    if(i===item.correct)b.classList.add("correct");
-  });
-  stats.done++; runAnswers++;
-  progress[category]++;
-  if(choice===item.correct){
-    score++; stats.correct++;
-    document.getElementById("feedbackTitle").textContent="Correct! Amazing job! 🎉";
-  }else{
-    button.classList.add("wrong");
-    document.getElementById("feedbackTitle").textContent="Not quite, but keep learning! 💗";
-  }
-  document.getElementById("explanationText").textContent=item.exp;
-  document.getElementById("explanation").classList.remove("hidden");
-  document.getElementById("nextButton").disabled=false;
-  updateStats();
-}
-function nextQuestion(){
-  if(!answered)return;
-  index++;
-  if(index>=lessons[category].questions.length){
-    document.getElementById("quizArea").classList.add("hidden");
-    document.getElementById("quizResults").classList.remove("hidden");
-    document.getElementById("quizProgress").style.width="100%";
-    document.getElementById("resultText").textContent=`You got ${score} out of ${lessons[category].questions.length} correct. ${score===lessons[category].questions.length?"Perfect score! You're on fire! 🔥":score>=3?"Good work! Review the explanations and keep practicing.":"Good effort! Review the explanations, then try again. You can improve!"}`;
-    updateStats();
-  }else renderQuestion();
-}
-function restartQuiz(){startQuiz(category);}
-function updateStats(){
-  document.getElementById("statDone").textContent=stats.done;
-  document.getElementById("statCorrect").textContent=stats.correct;
-  document.getElementById("statRate").textContent=stats.done?Math.round(stats.correct/stats.done*100)+"%":"0%";
-  ["math","verbal","logic"].forEach(key=>{
-    const total=lessons[key].questions.length;
-    document.getElementById("progress-"+key).style.width=Math.min(progress[key]/total*100,100)+"%";
-    document.getElementById("count-"+key).textContent=progress[key]+" questions attempted";
-  });
-}
-function membershipInfo(){
-  document.getElementById("toast").textContent="💛 Membership checkout is coming soon. No payment is collected on this demo website.";
-}
-updateStats();
-</script>
-</body>
-</html>
+{id:"NA-FB-005",category:"Numerical Ability",topic:"Age Problems",difficulty:"Final Boss",q:"A mother is currently three times as old as her daughter. In 12 years, she will be twice as old as her daughter. How old is the daughter now?",choices:["10","12","14","16"],correctText:"12",why:"Let the daughter's age be x and the mother's age be 3x. In 12 years, 3x+12=2(x+12). Thus 3x+12=2x+24, so x=12."},
+{id:"AA-FB-001",category:"Analytical Ability",topic:"Identifying Assumptions",difficulty:"Final Boss",q:"Statement: 'The agency should extend its online service hours because many applicants cannot complete transactions during their workday.' Which assumption is most necessary to the argument?",choices:["Every applicant prefers online transactions to in-person service.","The agency has no applicants who work during the day.","Extending online hours would allow at least some affected applicants to complete transactions.","All online transactions are completed without any technical problems."],correctText:"Extending online hours would allow at least some affected applicants to complete transactions.",why:"The recommendation depends on the idea that longer online service hours would help the applicants described. The other options make broader claims that the argument does not need."},
+{id:"AA-FB-002",category:"Analytical Ability",topic:"Drawing Conclusions",difficulty:"Final Boss",q:"All certified inspectors have completed the required training. Some employees who completed the training are temporary staff. Which conclusion must follow?",choices:["All temporary staff are certified inspectors.","Some certified inspectors are temporary staff.","No temporary staff are certified inspectors.","Every certified inspector completed the required training."],correctText:"Every certified inspector completed the required training.",why:"This restates the first premise and therefore must be true. The second premise does not establish whether any temporary staff are certified inspectors."},
+{id:"AA-FB-003",category:"Analytical Ability",topic:"Word Analogy",difficulty:"Final Boss",q:"PREMISE is to CONCLUSION as EVIDENCE is to ______.",choices:["Investigation","Inference","Testimony","Observation"],correctText:"Inference",why:"A premise is a statement or basis from which a conclusion is drawn. Evidence is a basis from which an inference may be drawn. The relationship is basis to reasoned result."},
+{id:"AA-FB-004",category:"Analytical Ability",topic:"Symbolic Logic",difficulty:"Final Boss",q:"If P implies Q, and Q is false, what must be true under classical logic?",choices:["P is true","P is false","Q is true","P and Q are both true"],correctText:"P is false",why:"By modus tollens, if P→Q and not Q, then not P. If Q is false, P cannot be true without contradicting the implication."},
+{id:"GI-FB-001",category:"General Information",topic:"RA 6713: Norms of Conduct",difficulty:"Final Boss",q:"A public employee is offered an expensive gift by a contractor whose application the employee is assigned to evaluate. What is the most appropriate general ethical response under public-service standards?",choices:["Accept it if the contractor says it is customary.","Accept it but disclose it only if questioned.","Decline the gift and follow applicable agency reporting rules.","Accept it after the application has been approved."],correctText:"Decline the gift and follow applicable agency reporting rules.",why:"Public officials and employees must avoid conflicts of interest and conduct that could influence, or appear to influence, official duties. Specific cases should be checked against RA 6713 and applicable agency rules."},
+{id:"GI-FB-002",category:"General Information",topic:"Bill of Rights",difficulty:"Final Boss",q:"Which statement best reflects the general protection against unreasonable searches and seizures under the 1987 Philippine Constitution?",choices:["Any government employee may search a home whenever it seems useful.","Searches and seizures are generally subject to constitutional requirements, including a valid warrant unless a recognised exception applies.","A warrant is never required if the person is suspected of an offence.","Only elected officials are protected against unreasonable searches."],correctText:"Searches and seizures are generally subject to constitutional requirements, including a valid warrant unless a recognised exception applies.",why:"The Constitution protects people against unreasonable searches and seizures. Warrant requirements and recognised exceptions depend on the facts and applicable law; this is a general study summary, not legal advice."},
+{id:"GI-FB-003",category:"General Information",topic:"Branches of Government and Local Government",difficulty:"Final Boss",q:"Which constitutional principle best explains why courts may review whether government action is consistent with the Constitution?",choices:["Judicial review within the constitutional system of checks and balances","Absolute control of the executive branch over all agencies","The principle that statutes cannot be challenged","The rule that local ordinances override the Constitution"],correctText:"Judicial review within the constitutional system of checks and balances",why:"Judicial review allows courts, in appropriate cases, to determine whether government acts comply with the Constitution. The Constitution remains the supreme law."},
+{id:"GI-FB-004",category:"General Information",topic:"Environmental Laws and Sustainability",difficulty:"Final Boss",q:"A local programme reduces waste sent to landfills by prioritising prevention, reuse, and recycling. Which principle does this best illustrate?",choices:["Treating all waste as unavoidable","Waste hierarchy and resource conservation","Replacing environmental safeguards with voluntary promises","Maximising disposal before considering prevention"],correctText:"Waste hierarchy and resource conservation",why:"Waste prevention and reuse are generally preferred before recycling and final disposal because they conserve resources and reduce waste. Specific legal requirements should be verified against current Philippine law."}
+];
+let currentScope={category:"",topic:""},currentQuestion=null,currentOptions=[],chosenText=null,sessionSeen=new Set();
+const STORAGE_KEY='cscMasteryLearnFirstProgressV3';let saved={answeredIds:[],correct:0,total:0};try{saved={...saved,...JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}}catch(e){}
+const letters=['A','B','C','D'];
+function saveProgress(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(saved))}catch(e){}}
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+function renderScopes(){const grid=document.getElementById('scopeGrid');grid.innerHTML='';Object.entries(scopes).forEach(([category,topics],idx)=>{const card=document.createElement('div');card.className='scope-card';const toggle=document.createElement('button');toggle.className='scope-toggle';toggle.type='button';toggle.setAttribute('aria-expanded','false');toggle.innerHTML=`<span>${['📚','🔢','🧠','🇵🇭'][idx]} ${category}</span><span class="arrow">⌄</span>`;const list=document.createElement('div');list.className='scope-list';const inner=document.createElement('div');inner.className='scope-list-inner';topics.forEach(topic=>{const b=document.createElement('button');b.type='button';b.className='scope-btn';b.textContent=topic;b.onclick=()=>selectSubtopic(category,topic);inner.appendChild(b)});list.appendChild(inner);toggle.onclick=()=>{const open=list.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))};card.append(toggle,list);grid.appendChild(card)})}
+function selectSubtopic(category,topic){currentScope={category,topic};currentQuestion=null;chosenText=null;document.getElementById('quizView').classList.add('hidden');renderLesson();document.getElementById('lessonView').classList.remove('hidden');document.getElementById('lessonView').scrollIntoView({behavior:'smooth',block:'start'})}
+function renderLesson(){const box=document.getElementById('lessonView');const note=lessonNotes[currentScope.topic];const intro=note?note.intro:(generalNotes[currentScope.topic]||`This lesson introduces the main ideas in ${currentScope.topic}. Focus on the key terms, the rules that apply, and how the topic relates to the Civil Service Exam.`);const points=note?note.points:[`Understand the meaning and purpose of ${currentScope.topic}.`,`Learn key terms, principles, and distinctions connected to this topic.`,`When answering, use the information given and avoid unsupported assumptions.`];const example=note?note.example:`Example study approach: define the main concept, identify its important rule or principle, then apply it to a short real-life situation. For laws and government topics, confirm specific provisions using current official sources.`;const tip=note?note.tip:'Cat tip: learn the main principle first, then test yourself with a scenario. For legal and government facts, use reliable and up-to-date references.';box.innerHTML='';const head=document.createElement('div');head.innerHTML=`<span class="tag">${currentScope.category}</span><h2>📖 ${currentScope.topic}</h2><p class="lesson-lead"></p>`;head.querySelector('.lesson-lead').textContent=intro;box.appendChild(head);const sub=document.createElement('h3');sub.textContent='Key things to remember';box.appendChild(sub);const ul=document.createElement('ul');ul.className='lesson-points';points.forEach(p=>{const li=document.createElement('li');li.textContent=p;ul.appendChild(li)});box.appendChild(ul);const ex=document.createElement('div');ex.className='example';const strong=document.createElement('strong');strong.textContent='✏️ Example';ex.append(strong,document.createElement('br'),document.createTextNode(example));box.appendChild(ex);const tipBox=document.createElement('div');tipBox.className='cat-tip';tipBox.textContent='🐱 Cat’s tip: '+tip;box.appendChild(tipBox);const actions=document.createElement('div');actions.className='lesson-actions';const start=document.createElement('button');start.className='btn';start.textContent='Start Final Boss Mock Exam →';start.onclick=startMockExam;const back=document.createElement('button');back.className='btn secondary';back.textContent='← Choose another subtopic';back.onclick=goToScopes;actions.append(start,back);box.appendChild(actions);const available=questions.some(q=>q.category===currentScope.category&&q.topic===currentScope.topic);if(!available){const msg=document.createElement('p');msg.className='fine';msg.textContent='This lesson is available as a preview. Its practice-question set is still being prepared; we will add reviewed questions for this subtopic in a future content batch.';box.insertBefore(msg,actions)}}
+function goToScopes(){document.getElementById('practice').scrollIntoView({behavior:'smooth',block:'start'})}
+function backToLesson(){document.getElementById('quizView').classList.add('hidden');document.getElementById('lessonView').classList.remove('hidden');document.getElementById('lessonView').scrollIntoView({behavior:'smooth',block:'start'})}
+function startMockExam(){document.getElementById('lessonView').classList.add('hidden');document.getElementById('quizView').classList.remove('hidden');sessionSeen=new Set();loadNextQuestion();document.getElementById('quizView').scrollIntoView({behavior:'smooth',block:'start'})}
+function poolForScope(){return questions.filter(q=>q.category===currentScope.category&&q.topic===currentScope.topic)}
+function chooseNextQuestion(){const pool=poolForScope();if(!pool.length)return null;const answered=new Set(saved.answeredIds||[]);let unseen=pool.filter(q=>!answered.has(q.id)&&!sessionSeen.has(q.id));if(!unseen.length)unseen=pool.filter(q=>!sessionSeen.has(q.id));if(!unseen.length){sessionSeen.clear();unseen=pool}return shuffle(unseen)[0]}
+function loadNextQuestion(){currentQuestion=chooseNextQuestion();chosenText=null;if(!currentQuestion){document.getElementById('topic').textContent=currentScope.topic;document.getElementById('questionText').textContent='This subtopic’s practice questions are still being prepared. You can return to the lesson or choose another subtopic.';document.getElementById('choices').innerHTML='';document.getElementById('feedback').className='feedback';document.getElementById('counter').textContent='Coming soon';document.getElementById('nextBtn').classList.add('hidden');return}currentOptions=shuffle(currentQuestion.choices);sessionSeen.add(currentQuestion.id);document.getElementById('nextBtn').classList.remove('hidden');renderQuestion()}
+function renderQuestion(){const q=currentQuestion;if(!q)return;document.getElementById('counter').textContent='Final Boss';document.getElementById('topic').textContent=q.category+' · '+q.topic;document.getElementById('questionText').textContent=q.q;const box=document.getElementById('choices');box.innerHTML='';currentOptions.forEach((choice,i)=>{const b=document.createElement('button');b.className='choice';b.type='button';if(chosenText!==null&&choice===q.correctText)b.classList.add('correct');if(chosenText!==null&&choice===chosenText&&choice!==q.correctText)b.classList.add('wrong');const letter=document.createElement('span');letter.className='letter';letter.textContent=letters[i]+'.';const text=document.createElement('span');text.textContent=choice;b.append(letter,text);b.disabled=chosenText!==null;b.onclick=()=>selectAnswer(choice);box.appendChild(b)});const fb=document.getElementById('feedback');if(chosenText!==null){const good=chosenText===q.correctText;fb.className='feedback show '+(good?'good':'bad');fb.textContent=(good?'Correct! 🏆 ':'Good try — keep learning! 💗 ')+q.why;document.getElementById('nextBtn').textContent='Next Question →'}else{fb.className='feedback';fb.textContent='';document.getElementById('nextBtn').textContent='Check Answer →'}}
+function selectAnswer(choice){if(chosenText!==null||!currentQuestion)return;chosenText=choice;const ids=new Set(saved.answeredIds||[]);if(!ids.has(currentQuestion.id)){ids.add(currentQuestion.id);saved.answeredIds=[...ids];saved.total=(saved.total||0)+1;if(choice===currentQuestion.correctText)saved.correct=(saved.correct||0)+1;saveProgress()}renderQuestion()}
+function nextQuestion(){if(!currentQuestion){backToLesson();return}if(chosenText===null){const fb=document.getElementById('feedback');fb.className='feedback show bad';fb.textContent='Choose an answer first so you can read the explanation. 💡';return}loadNextQuestion()}
+renderScopes();
+</script></body></html>
