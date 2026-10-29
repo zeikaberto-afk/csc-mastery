@@ -1,0 +1,152 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSC Mastery — Dashboard</title>
+<style>
+:root {
+  --pink: #ed2f87;
+  --soft: #fff0f7;
+  --yellow: #ffd85c;
+  --ink: #24244d;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 20px;
+  background: #fffafd;
+  color: var(--ink);
+  font-family: system-ui, sans-serif;
+}
+main { max-width: 700px; margin: auto; }
+header, .card {
+  background: white;
+  border: 1px solid #f4cfe1;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+header {
+  background: linear-gradient(120deg, #fff8d9, var(--soft));
+}
+h1 { color: var(--pink); margin-bottom: 6px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.stat {
+  background: var(--soft);
+  border-radius: 14px;
+  padding: 16px;
+}
+.number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--pink);
+}
+button {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--pink);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 12px;
+}
+a { text-decoration: none; }
+small { color: #686987; }
+@media (max-width: 420px) {
+  body { padding: 12px; }
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div style="font-size:2.5rem">🐱📚</div>
+  <h1>My Study Dashboard</h1>
+  <p>Small steps today, big dreams tomorrow!</p>
+  <small>Your progress is stored on this device.</small>
+</header>
+
+<section class="card">
+  <h2>📊 Your Progress</h2>
+  <div class="grid">
+    <div class="stat">
+      <div class="number" id="answered">0</div>
+      <div>Questions answered</div>
+    </div>
+    <div class="stat">
+      <div class="number" id="correct">0</div>
+      <div>Correct answers</div>
+    </div>
+    <div class="stat">
+      <div class="number" id="accuracy">0%</div>
+      <div>Accuracy</div>
+    </div>
+    <div class="stat">
+      <div class="number" id="topics">0</div>
+      <div>Topics practiced</div>
+    </div>
+  </div>
+  <p id="message">Let's start learning!</p>
+  <button onclick="refreshProgress()">Refresh progress ↻</button>
+</section>
+
+<section class="card">
+  <h2>🎯 Keep going!</h2>
+  <p>Study a lesson, answer practice questions, and return here to check your progress.</p>
+  <a href="./index.html">
+    <button type="button">← Return to CSC Mastery</button>
+  </a>
+</section>
+
+<p style="text-align:center">🐱 CSC Mastery · Learn. Practice. Improve.</p>
+</main>
+
+<script>
+function refreshProgress() {
+  let saved = {};
+  try {
+    saved = JSON.parse(
+      localStorage.getItem("cscMasteryLearnFirstProgressV3") || "{}"
+    );
+  } catch (error) {}
+
+  const ids = new Set(saved.answeredIds || []);
+  const total = ids.size;
+  const correct = Number(saved.correct) || 0;
+  const answeredTotal = Number(saved.total) || 0;
+  const accuracy = answeredTotal
+    ? Math.round(correct / answeredTotal * 100)
+    : 0;
+
+  document.getElementById("answered").textContent = total;
+  document.getElementById("correct").textContent = correct;
+  document.getElementById("accuracy").textContent = accuracy + "%";
+
+  const topicIds = new Set(
+    [...ids].map(id => {
+      const parts = String(id).split("-");
+      return parts.length > 2 ? parts.slice(0, 2).join("-") : id;
+    })
+  );
+
+  document.getElementById("topics").textContent =
+    total ? topicIds.size : 0;
+
+  document.getElementById("message").textContent = total
+    ? "Great work! Keep practicing and reviewing your mistakes. 💗"
+    : "Your progress will appear after you answer questions on this device.";
+}
+refreshProgress();
+</script>
+</body>
+</html>
